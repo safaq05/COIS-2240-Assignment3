@@ -35,4 +35,32 @@ public void testBookId() throws Exception {
         assertEquals("Invalid Book ID: 1000", e.getMessage());
     }
 }
+@Test
+public void testBorrowReturn() throws Exception {
+    // Set up
+    Book book = new Book(101, "Test Book");
+    Member member = new Member(1, "Test Member");
+    Transaction transaction = Transaction.getTransaction();
+
+    // Ensure book is initially available
+    assertTrue(book.isAvailable());
+
+    // Borrow the book
+    boolean borrowed = transaction.borrowBook(book, member);
+    assertTrue(borrowed);
+    assertFalse(book.isAvailable());
+
+    // Try to borrow again (should fail)
+    boolean borrowAgain = transaction.borrowBook(book, member);
+    assertFalse(borrowAgain);
+
+    // Return the book
+    boolean returned = transaction.returnBook(book, member);
+    assertTrue(returned);
+    assertTrue(book.isAvailable());
+
+    // Try to return again (should fail)
+    boolean returnAgain = transaction.returnBook(book, member);
+    assertFalse(returnAgain);
+}
 
