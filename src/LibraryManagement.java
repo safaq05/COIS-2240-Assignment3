@@ -120,9 +120,11 @@ public class LibraryManagement {
                         System.out.println("Invalid member ID.");
                     }
                     break;
-                case 6: // View transaction history
-                    Transaction.displayTransactionHistory(); // Display all transaction history
+                    //fix this
+                case 6:
+                    transaction.displayTransactionHistory();
                     break;
+
                 case 7: // Exit the system
                     System.out.println("Exiting. Good Bye..");
                     running = false; // Stop the loop
