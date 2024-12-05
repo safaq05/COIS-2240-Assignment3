@@ -15,10 +15,14 @@ public class Library {
         return true;
     }
 
-    
-    // Add a new book to the library
-    public void addBook(Book book) {
+    //new code to add book
+    public boolean addBook(Book book) {
+        if (findBookById(book.getId()) != null) {
+            System.out.println("Book with ID " + book.getId() + " already exists.");
+            return false;
+        }
         books.add(book);
+        return true;
     }
 
     // Find a member by ID
