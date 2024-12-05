@@ -48,18 +48,20 @@ public class LibraryManagement {
                 }
                 break;
 
-                case 2: // Add a new book
-                    System.out.print("Enter book ID: ");
-                    id = scanner.nextInt();
-                    System.out.print("Enter book title: ");
-                    String title = scanner.next();
-                    
-                    scanner.nextLine(); // Consume newline
+                //adding a new book
+            case 2:
+            	
+                System.out.print("Enter book ID: ");
+                int bookId = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+                System.out.print("Enter book title: ");
+                String bookTitle = scanner.nextLine();
+                Book newBook = new Book(bookId, bookTitle);
+                if (library.addBook(newBook)) {
+                    System.out.println("Book added successfully.");
+                }
+                break;
 
-                    Book newBook = new Book(id, title); // Create new book object
-                    library.addBook(newBook); // Add book to the library
-                    System.out.println("Book added to library successfully.");
-                    break;
                 case 3: // Borrow a book
                     System.out.println("\n--- Available Members ---");
                     for (Member member : library.getMembers()) { // Display all members
