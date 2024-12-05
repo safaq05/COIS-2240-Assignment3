@@ -50,15 +50,18 @@ public class LibraryManagement {
 
                 //adding a new book
             case 2:
-            	
                 System.out.print("Enter book ID: ");
                 int bookId = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
                 System.out.print("Enter book title: ");
                 String bookTitle = scanner.nextLine();
-                Book newBook = new Book(bookId, bookTitle);
-                if (library.addBook(newBook)) {
-                    System.out.println("Book added successfully.");
+                try {
+                    Book newBook = new Book(bookId, bookTitle);
+                    if (library.addBook(newBook)) {
+                        System.out.println("Book added successfully.");
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
                 }
                 break;
 
