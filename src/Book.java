@@ -3,11 +3,16 @@ public class Book {
     private String title;
     private boolean available;
 
-    public Book(int id, String title) {
+    //update book class
+    public Book(int id, String title) throws Exception {
+        if (!isValidId(id)) {
+            throw new Exception("Invalid Book ID: " + id);
+        }
         this.id = id;
         this.title = title;
         this.available = true;
     }
+
 
     // Getter methods
     public int getId() {
