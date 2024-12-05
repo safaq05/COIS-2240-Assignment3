@@ -63,4 +63,15 @@ public void testBorrowReturn() throws Exception {
     boolean returnAgain = transaction.returnBook(book, member);
     assertFalse(returnAgain);
 }
+@Test
+public void testSingletonTransaction() throws Exception {
+    // Ensure Singleton instance
+    Transaction instance1 = Transaction.getTransaction();
+    Transaction instance2 = Transaction.getTransaction();
+    assertEquals(instance1, instance2);
+
+    // Validate private constructor using reflection
+    Constructor<Transaction> constructor = Transaction.class.getDeclaredConstructor();
+    assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+}
 
