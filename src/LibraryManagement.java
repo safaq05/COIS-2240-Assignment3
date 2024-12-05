@@ -13,7 +13,7 @@ public class LibraryManagement {
         Scanner scanner = new Scanner(System.in); // Scanner object to take user input
         boolean running = true; // Keeps the system running in a loop
         //added this
-        Transaction transaction = Transaction.getTransaction(); // Singleton instance
+        private Transaction transaction = Transaction.getTransaction();//insatnce
 
 
         while (running) { // Main menu loop
