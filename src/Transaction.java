@@ -44,7 +44,14 @@ public class Transaction {
         }
     }
 
-   
+    // Save transaction details to a file
+    public void saveTransaction(String transactionDetails) {
+        try (FileWriter writer = new FileWriter("transactions.txt", true)) {
+            writer.write(transactionDetails + "\n");
+        } catch (IOException e) {
+            System.out.println("Error saving transaction: " + e.getMessage());
+        }
+    }
 
     // Display transaction history
     public void displayTransactionHistory() {
