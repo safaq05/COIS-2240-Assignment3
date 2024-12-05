@@ -1,14 +1,14 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.io.*;
 
 public class Transaction {
-    private static Transaction instance; // Singleton instance
+    private static Transaction instance;
 
     private Transaction() {
         // Private constructor to prevent instantiation
     }
 
-    // Static method to get the single instance
     public static Transaction getTransaction() {
         if (instance == null) {
             instance = new Transaction();
@@ -16,6 +16,7 @@ public class Transaction {
         return instance;
     }
 
+    // Perform the borrowing of a book
     public boolean borrowBook(Book book, Member member) {
         if (book.isAvailable()) {
             book.borrowBook();
@@ -30,6 +31,7 @@ public class Transaction {
         }
     }
 
+    // Perform the returning of a book
     public void returnBook(Book book, Member member) {
         if (member.getBorrowedBooks().contains(book)) {
             member.returnBook(book);
@@ -42,16 +44,31 @@ public class Transaction {
         }
     }
 
+   
+
+    // Display transaction history
+    public void displayTransactionHistory() {
+        File file = new File("transactions.txt");
+        if (!file.exists()) {
+            System.out.println("No transactions found.");
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            System.out.println("\n--- Transaction History ---");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading transaction history: " + e.getMessage());
+        }
+    }
+
+    // Get the current date and time in a readable format
     private String getCurrentDateTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date());
     }
-
-    // Placeholder for saveTransaction method (to be implemented in Task 2)
-    public void saveTransaction(String transactionDetails) {
-        // Implementation in Task 2
-    }
-    
-    
 }
 

@@ -5,11 +5,16 @@ public class LibraryManagement {
 
     public static void main(String[] args) {
         new LibraryManagement().run(); // Calls the run method to start the program
+       
+
     }
 
     private void run() {
         Scanner scanner = new Scanner(System.in); // Scanner object to take user input
         boolean running = true; // Keeps the system running in a loop
+        //added this
+        Transaction transaction = Transaction.getTransaction(); // Singleton instance
+
 
         while (running) { // Main menu loop
             System.out.println("===========================");
