@@ -33,18 +33,21 @@ public class LibraryManagement {
             scanner.nextLine(); // Consume newline character
 
             switch (choice) { // Handle different user choices
-                case 1: // Add a new member
-                    System.out.print("Enter member ID: ");
-                    int id = scanner.nextInt();
-                    System.out.print("Enter member name: ");
-                    String name = scanner.next();
-                    
-                    scanner.nextLine(); // Consume newline
-
-                    Member newMember = new Member(id, name); // Create new member object
-                    library.addMember(newMember); // Add member to the library
+            case 1:
+            	//adding anew member
+                System.out.print("Enter member ID: ");
+                //makse sure its all numbers
+                int memberId = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+                //adding a new meber
+                System.out.print("Enter member name: ");
+                String memberName = scanner.nextLine();
+                Member newMember = new Member(memberId, memberName);
+                if (library.addMember(newMember)) {
                     System.out.println("Member added successfully.");
-                    break;
+                }
+                break;
+
                 case 2: // Add a new book
                     System.out.print("Enter book ID: ");
                     id = scanner.nextInt();
